@@ -133,7 +133,7 @@ export default function Home() {
   useEffect(() => {
     if (!showModal) { document.body.style.overflow = ''; return; }
     document.body.style.overflow = 'hidden';
-    const onKey = (e) => { if (e.key === 'Escape' && !loading) closeModal(); };
+    const onKey = (e) => { if (e.key === 'Escape' && !loading) setShowModal(false); };
     window.addEventListener('keydown', onKey);
     return () => { window.removeEventListener('keydown', onKey); document.body.style.overflow = ''; };
   }, [showModal, loading]);
@@ -495,7 +495,7 @@ export default function Home() {
             ].map((col) => (
               <div key={col.title}>
                 <div className="ah-footer-col-title">{col.title}</div>
-                {col.links.map((l) => <a key={l} href="#" className="ah-footer-link">{l}</a>)}
+                {col.links.map((l) => <a key={l} href="/" className="ah-footer-link" onClick={e => e.preventDefault()}>{l}</a>)}
               </div>
             ))}
           </div>
